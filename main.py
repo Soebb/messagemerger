@@ -177,7 +177,7 @@ def error_callback(update, context):
 
 def main():
     token = os.environ.get('BOT_TOKEN')
-    updater = Updater(token), use_context=True)
+    updater = Updater(token, use_context=True)
     dp = updater.dispatcher
     dp.add_handler(CommandHandler("start", start))
     dp.add_handler(CommandHandler("help", send_help))
