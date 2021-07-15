@@ -79,9 +79,9 @@ def done(update, context):
             url_msg = MarkdownConverter().convert(text)
             query = urllib.parse.quote(url_msg)
             share_url = 'tg://msg_url?url=' + query
-            markup = InlineKeyboardMarkup([[InlineKeyboardButton("📬 Share", url=share_url)], [
-                InlineKeyboardButton("📢 Publish to channel", callback_data='{}'.format(message_id)),
-                InlineKeyboardButton("🗣 Show names", callback_data='{};show_dialogs'.format(message_id))]])
+            markup = InlineKeyboardMarkup([
+                InlineKeyboardButton("📬 Share", url=share_url),
+                InlineKeyboardButton("🗣 Show names", callback_data='{};show_dialogs'.format(message_id))])
             update.message.reply_text(text, reply_markup=markup, parse_mode=ParseMode.HTML)
         else:
             messages = [text[i: i + 4096] for i in range(0, len(text), 4096)]
