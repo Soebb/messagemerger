@@ -1,2 +1,3 @@
 python-telegram-bot==12.1.0
 logzero
+tinydb
