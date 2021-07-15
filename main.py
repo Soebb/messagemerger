@@ -24,9 +24,6 @@ data_dir.mkdir(parents=True, exist_ok=True)
 db = TinyDB(data_dir / 'db.json')
 user_db = Query()
 
-LIST_OF_ADMINS = [691609650, 62056065]
-
-
 def start(update, context):
     text = "I am a bot to help you merge messages.\n"
     text += "Forward a bunch of messages and send /done command when you're done."
@@ -39,18 +36,6 @@ def send_help(update, context):
 
 def get_admin_ids(context, chat_id):
     return [admin.user.id for admin in context.bot.get_chat_administrators(chat_id)]
-
-
-def restricted(func):
-    @wraps(func)
-    def wrapped(update, context, *args, **kwargs):
-        user_id = update.effective_user.id
-        if user_id not in LIST_OF_ADMINS:
-            print("Unauthorized access denied for {}.".format(user_id))
-            return
-        return func(update, context, *args, **kwargs)
-
-    return wrapped
 
 
 def store_forwarded_message(update, context):
@@ -191,7 +176,8 @@ def error_callback(update, context):
 
 
 def main():
-    updater = Updater(config("BOT_TOKEN"), use_context=True)
+    token = os.environ.get('BOT_TOKEN')
+    updater = Updater(token), use_context=True)
     dp = updater.dispatcher
     dp.add_handler(CommandHandler("start", start))
     dp.add_handler(CommandHandler("help", send_help))
