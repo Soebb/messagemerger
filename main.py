@@ -23,7 +23,7 @@ db = TinyDB(data_dir / 'db.json')
 user_db = Query()
 
 def start(update, context):
-    text = 'I am a bot to help you merge messages.\nForward a bunch of messages and send /done command when you are done.\nAlso /split command seperates a merged message.'
+    text = 'I am a bot to help you merge messages.\n\nForward a bunch of messages and send /done when you are done.\nAlso use /split command to split a merged message.'
     update.message.reply_text(text)
 
 
