@@ -11,7 +11,6 @@ from pathlib import Path
 from uuid import uuid4
 
 import telegram
-from decouple import config
 from logzero import logger
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, ParseMode
 from telegram.ext import (Updater, CommandHandler, MessageHandler, Filters, CallbackQueryHandler)
