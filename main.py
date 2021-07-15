@@ -156,12 +156,10 @@ def add(update, context):
                                  text="Please double-check if the bot is an administrator in your channel.")
 
 
-@restricted
 def backup(update, context):
     update.message.reply_document(document=open('db.json', 'rb'))
 
 
-@restricted
 def backup_handler(update, context):
     file = context.bot.get_file(update.message.document.file_id)
     file_name = update.message.document.file_name
