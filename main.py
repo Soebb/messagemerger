@@ -62,7 +62,7 @@ def split_messages(update, context):
     except IndexError:
         pass
     except KeyError:
-        update.message.reply_text("Forward a merged message.")
+        update.message.reply_text("Forward a merged message, then send /split")
     finally:
         context.user_data.clear()
 
