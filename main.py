@@ -33,10 +33,6 @@ def send_help(update, context):
     update.message.reply_text("Use /start to get information on how to use me.")
 
 
-def get_admin_ids(context, chat_id):
-    return [admin.user.id for admin in context.bot.get_chat_administrators(chat_id)]
-
-
 def store_forwarded_message(update, context):
     user_id = update.message.from_user.id
     try:
