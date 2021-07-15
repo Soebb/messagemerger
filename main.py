@@ -143,13 +143,8 @@ def post(update, context):
 def add(update, context):
     user_id = update.message.from_user.id
     channel_id = ' '.join(context.args)
-    if context.bot.id in get_admin_ids(context.bot, channel_id):
-        db.insert({'user_id': str(user_id), 'channel_id': str(channel_id)})
-        context.bot.send_message(chat_id=channel_id, text="Your channel has been successfully added!")
-        context.bot.send_message(chat_id=user_id, text="Your channel has been successfully added!")
-    else:
-        context.bot.send_message(chat_id=user_id,
-                                 text="Please double-check if the bot is an administrator in your channel.")
+    context.bot.send_message(chat_id=channel_id, text="Your channel has been successfully added!")
+    context.bot.send_message(chat_id=user_id, text="Your channel has been successfully added!")
 
 
 def backup(update, context):
