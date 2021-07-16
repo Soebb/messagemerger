@@ -68,27 +68,12 @@ def split_messages(update, context):
 
 def done(update, context):
     user_id = update.message.from_user.id
-    try:
-        data = context.user_data[user_id]
-        message_id = uuid4()
-        db.insert({'message_id': str(message_id), 'text': data})
-        text = "\n".join([i.split(': ', 1)[1] for i in data])
-        if len(text) <= 4096:
-            url_msg = MarkdownConverter().convert(text)
-            query = urllib.parse.quote(url_msg)
-            share_url = 'tg://msg_url?url=' + query
-            markup = InlineKeyboardMarkup([[InlineKeyboardButton("📬 Share", url=share_url)], [
-                InlineKeyboardButton("🗣 Show names", callback_data='{};show_dialogs'.format(message_id))]])
-            update.message.reply_text(text, reply_markup=markup, parse_mode=ParseMode.HTML)
-        else:
-            messages = [text[i: i + 4096] for i in range(0, len(text), 4096)]
-            for part in messages:
-                update.message.reply_text(part, parse_mode=ParseMode.HTML)
-                time.sleep(1)
-    except KeyError:
-        update.message.reply_text("Forward some messages.")
-    finally:
-        context.user_data.clear()
+    text = context.user_data[user_id]
+    markup = InlineKeyboardMarkup([[InlineKeyboardButton("📬 Share", url=https://github.com/Nertflix/button-creator-bot)], [
+        InlineKeyboardButton("🗣 Show names", url=https://github.com/Nertflix/button-creator-bot)]])
+    update.message.reply_text(text, reply_markup=markup, parse_mode=ParseMode.HTML)
+        
+            
 
 
 def error_callback(update, context):
